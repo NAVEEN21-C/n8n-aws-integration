@@ -1,0 +1,104 @@
+{
+    "name": "Daily Joke (JS Version)",
+    "active": false,
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "hours",
+                            "triggerAtHour": 8
+                        }
+                    ]
+                }
+            },
+            "name": "Schedule Trigger",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "https://official-joke-api.appspot.com/random_joke",
+                "options": {}
+            },
+            "name": "Fetch Joke",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "const joke = items[0].json;\n\nreturn [\n  {\n    json: {\n      email_subject: `Daily Joke: ${joke.setup}`,\n      email_body: `Here is your daily joke:\n\n${joke.setup}\n\n${joke.punchline}\n\nHave a great day!`\n    }\n  }\n];"
+            },
+            "name": "Format with JS",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 1,
+            "position": [
+                650,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "fromEmail": "admin@example.com",
+                "toEmail": "user@example.com",
+                "subject": "={{ $json.email_subject }}",
+                "text": "={{ $json.email_body }}",
+                "options": {}
+            },
+            "name": "Send Email",
+            "type": "n8n-nodes-base.emailSend",
+            "typeVersion": 1,
+            "position": [
+                850,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Fetch Joke",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Fetch Joke": {
+            "main": [
+                [
+                    {
+                        "node": "Format with JS",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Format with JS": {
+            "main": [
+                [
+                    {
+                        "node": "Send Email",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {},
+    "staticData": null,
+    "tags": []
+}

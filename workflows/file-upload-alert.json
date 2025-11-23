@@ -1,0 +1,75 @@
+{
+    "name": "File Upload Alert",
+    "active": true,
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "file-uploaded",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "jsCode": "const data = items[0].json.body;\n\nreturn [\n  {\n    json: {\n      email_subject: `New File Uploaded: ${data.filename}`,\n      email_body: `A new file has been uploaded to your gallery!\n\nFile: ${data.filename}\nSize: ${data.size} bytes\nURL: ${data.url}\n\nCheck it out: http://uplife.duckdns.org/secondsite/`\n    }\n  }\n];"
+            },
+            "name": "Format Email",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "fromEmail": "admin@example.com",
+                "toEmail": "user@example.com",
+                "subject": "={{ $json.email_subject }}",
+                "text": "={{ $json.email_body }}",
+                "options": {}
+            },
+            "name": "Send Email",
+            "type": "n8n-nodes-base.emailSend",
+            "typeVersion": 1,
+            "position": [
+                650,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Format Email",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Format Email": {
+            "main": [
+                [
+                    {
+                        "node": "Send Email",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {},
+    "staticData": null,
+    "tags": []
+}

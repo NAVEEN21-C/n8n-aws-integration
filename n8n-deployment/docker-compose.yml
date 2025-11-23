@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:1.108.2
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      # IMPORTANT: Change these values!
+      - N8N_HOST=YOUR_EC2_IP_HERE
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=YOUR_PASSWORD_HERE
+      
+      # Core settings
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - N8N_SECURE_COOKIE=false
+      
+      # Webhook configuration
+      # Production webhooks: http://YOUR_EC2_IP:5678/webhook/WEBHOOK_PATH
+      # Test webhooks: http://YOUR_EC2_IP:5678/webhook-test/WEBHOOK_PATH
+      
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+
+# After first run, your data persists in ./n8n_data/
+# This includes:
+# - Workflows
+# - Credentials
+# - Execution history
+# - Database
+
+# To upgrade n8n:
+# 1. docker-compose down
+# 2. Change image version above
+# 3. docker-compose up -d
+
+# IMPORTANT: Never downgrade versions (database migration is one-way)

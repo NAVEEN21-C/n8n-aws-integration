@@ -1,0 +1,29 @@
+# n8n Data Directory
+n8n_data/
+
+# Environment files
+.env
+*.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.bak
+
+# Credentials (never commit!)
+credentials.json
+config.json
