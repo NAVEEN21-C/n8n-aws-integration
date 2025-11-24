@@ -148,7 +148,6 @@ Key settings in `n8n-deployment/docker-compose.yml`:
 - N8N_BASIC_AUTH_PASSWORD=password  # Change this!
 
 
-![Screenshot (19)_LI](https://github.com/user-attachments/assets/1284d818-6308-42ec-bee0-808bbd498652)
 
 ### Webhook Integration
 
@@ -169,6 +168,7 @@ This sends file metadata to n8n, which then emails you.
 ## 🎯 Workflows Explained
 
 ### 1. Daily Joke (Scheduled)
+![Screenshot (19)_LI](https://github.com/user-attachments/assets/0f9b9f75-263f-485d-b297-1ec57ff612e1)
 
 **Trigger:** Every day at 8:00 AM  
 **Action:** Fetches a random joke and emails it
