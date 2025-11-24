@@ -59,6 +59,7 @@ sudo firewall-cmd --reload
 Navigate to: `http://YOUR_EC2_IP:5678`
 
 Create your owner account and import the workflows.
+<img width="1484" height="944" alt="Screenshot (15)" src="https://github.com/user-attachments/assets/7f798ba9-babb-4d6c-be73-6557e86d7f35" />
 
 ### 4. Import Workflows
 
@@ -145,7 +146,8 @@ Key settings in `n8n-deployment/docker-compose.yml`:
 - N8N_HOST=YOUR_EC2_IP          # Change this!
 - N8N_BASIC_AUTH_USER=admin
 - N8N_BASIC_AUTH_PASSWORD=password  # Change this!
-```
+```![Screenshot (19)_LI](https://github.com/user-attachments/assets/0c3be733-1886-46b8-9053-86545ca5bbf1)
+
 
 ### Webhook Integration
 
@@ -154,6 +156,7 @@ The upload site triggers n8n via webhook:
 ```php
 $webhookUrl = 'http://localhost:5678/webhook/file-uploaded';
 ```
+<img width="1920" height="938" alt="Screenshot (13)" src="https://github.com/user-attachments/assets/c2b41740-0aa4-4e40-b885-ff7d7ba2d887" />
 
 This sends file metadata to n8n, which then emails you.
 
