@@ -174,6 +174,7 @@ This sends file metadata to n8n, which then emails you.
 **Action:** Fetches a random joke and emails it
 
 ### 2. File Upload Alert (Webhook)
+![Screenshot (22)_LI](https://github.com/user-attachments/assets/7ce7a74a-0156-4c09-a519-be4fba76a3da)
 
 **Trigger:** When file uploaded to PHP site  
 **Action:** Sends email with filename, size, and link
