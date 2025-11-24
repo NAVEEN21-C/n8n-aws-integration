@@ -146,8 +146,9 @@ Key settings in `n8n-deployment/docker-compose.yml`:
 - N8N_HOST=YOUR_EC2_IP          # Change this!
 - N8N_BASIC_AUTH_USER=admin
 - N8N_BASIC_AUTH_PASSWORD=password  # Change this!
-```![Screenshot (19)_LI](https://github.com/user-attachments/assets/0c3be733-1886-46b8-9053-86545ca5bbf1)
 
+
+![Screenshot (19)_LI](https://github.com/user-attachments/assets/1284d818-6308-42ec-bee0-808bbd498652)
 
 ### Webhook Integration
 
